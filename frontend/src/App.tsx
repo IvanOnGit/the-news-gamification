@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Bienvenido from "./components/Bienvenido";
+import UserPosts from "./components/UserPosts";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/bienvenido" element={<Bienvenido />} />
+        <Route path="/newsletter" element={<UserPosts />} />
       </Routes>
     </Router>
   );

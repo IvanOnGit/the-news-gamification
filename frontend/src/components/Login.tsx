@@ -18,7 +18,7 @@ const Login = () => {
       
       localStorage.setItem("token", response.data.token);
 
-      navigate("/bienvenido");  
+      navigate("/newsletter");  
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }
