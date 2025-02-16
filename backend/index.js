@@ -13,6 +13,9 @@ app.use("/users", userRoutes);
 const postRoutes = require("./routes/postRoutes");
 app.use("/posts", postRoutes);
 
+const authRoutes = require("./routes/authRoutes");
+app.use("/auth", authRoutes);
+
 app.get("/", (req, res) => {
   res.send("Servidor funcionando 🚀");
 });
