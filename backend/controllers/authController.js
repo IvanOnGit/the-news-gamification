@@ -42,9 +42,11 @@ const login = async (req, res) => {
         return res.status(401).json({ message: "Credenciales incorrectas" });
       }
   
-      const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(
+        { userId: user.id, name: user.name },
+        process.env.JWT_SECRET,
+        { expiresIn: "1h" }
+      );
   
       return res.json({ message: "Login exitoso", token });
   

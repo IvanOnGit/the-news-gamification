@@ -17,7 +17,6 @@ const Login = () => {
       console.log("Login exitoso:", response.data);
 
       localStorage.setItem("token", response.data.token);
-
       navigate("/newsletter");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
@@ -56,6 +55,16 @@ const Login = () => {
             Iniciar sesión
           </button>
         </form>
+
+        <div className="text-center mt-4">
+          <p className="text-gray-600">¿No tienes cuenta?</p>
+          <button
+            onClick={() => navigate("/register")}
+            className="mt-2 text-blue-500 font-semibold hover:underline"
+          >
+            Registrarse
+          </button>
+        </div>
       </div>
     </div>
   );
