@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom"; // Importamos useNavigate
+import { useNavigate } from "react-router-dom";
 
 interface Post {
   id: number;
@@ -11,23 +11,30 @@ interface Post {
 
 interface DecodedToken {
   userId: number;
-  name: string; // Asegúrate de que el backend envíe el nombre en el token
+  name: string;
 }
 
 const UserPosts = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [userName, setUserName] = useState<string | null>(null);
-  const navigate = useNavigate(); // Hook para redirigir
+  const [streak, setStreak] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchUserData = () => {
+    const fetchUserData = async () => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
           const decoded: DecodedToken = jwtDecode(token);
           setUserName(decoded.name);
+
+          const response = await axios.get(`http://localhost:5000/users/${decoded.userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+
+          setStreak(response.data.streak);
         } catch (error) {
-          console.error("Error al decodificar el token:", error);
+          console.error("Error al obtener los datos del usuario:", error);
         }
       }
     };
@@ -49,8 +56,27 @@ const UserPosts = () => {
     fetchPosts();
   }, []);
 
-  const handleSeeMore = (id: number) => {
-    navigate(`/newsletter/post/${id}`); // Redirigimos al detalle del post
+  const handleSeeMore = async (id: number) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded: DecodedToken = jwtDecode(token);
+
+        await axios.post(`http://localhost:5000/users/${decoded.userId}/click`, {}, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+  
+        const response = await axios.get(`http://localhost:5000/users/${decoded.userId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+  
+        setStreak(response.data.streak);
+      } catch (error) {
+        console.error("Error al actualizar la racha:", error);
+      }
+    }
+  
+    navigate(`/newsletter/post/${id}`);
   };
 
   return (
@@ -61,7 +87,12 @@ const UserPosts = () => {
           <h2 className="text-lg text-gray-600">Posts Recientes</h2>
         </div>
         {userName && (
-          <p className="text-lg font-semibold text-gray-700">Hello, {userName}!</p>
+          <div>
+            <p className="text-lg font-semibold text-gray-700">Hello, {userName}!</p>
+            {streak !== null && (
+              <p className="text-sm text-gray-500">Racha: {streak} días seguidos</p>
+            )}
+          </div>
         )}
       </div>
 

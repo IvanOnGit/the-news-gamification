@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = require("../db");
 
 const User = sequelize.define("User", {
@@ -19,6 +19,14 @@ const User = sequelize.define("User", {
   password: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  streak: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  lastClickDate: {
+    type: Sequelize.DATE,
+    defaultValue: null,
   },
 });
 
