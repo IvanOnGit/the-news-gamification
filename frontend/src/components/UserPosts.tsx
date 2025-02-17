@@ -90,7 +90,11 @@ const UserPosts = () => {
           <div>
             <p className="text-lg font-semibold text-gray-700">Hello, {userName}!</p>
             {streak !== null && (
-              <p className="text-sm text-gray-500">Racha: {streak} días seguidos</p>
+              <p className="text-sm text-gray-500">
+                {streak === 0
+                  ? "Streak: Open one article to start your streak!"
+                  : `Streak: ${streak} ${streak === 1 ? "day" : "days in a row"}`}
+              </p>
             )}
           </div>
         )}
