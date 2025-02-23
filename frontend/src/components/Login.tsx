@@ -16,8 +16,16 @@ const Login = () => {
       const response = await axios.post("http://localhost:5000/auth/login", data);
       console.log("Login exitoso:", response.data);
 
+      // Guardar token y rol en localStorage
       localStorage.setItem("token", response.data.token);
-      navigate("/newsletter");
+      localStorage.setItem("role", response.data.role);
+
+      // Redirigir según el rol
+      if (response.data.role === "admin") {
+        navigate("/dashboard");
+      } else {
+        navigate("/newsletter");
+      }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
     }

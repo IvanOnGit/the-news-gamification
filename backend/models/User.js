@@ -20,6 +20,10 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  role: {
+    type: DataTypes.ENUM("user", "admin"), // Nuevo campo para los roles
+    defaultValue: "user",                  // Valor por defecto
+  },
   streak: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
