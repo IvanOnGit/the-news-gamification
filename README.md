@@ -22,7 +22,7 @@ Este projeto foi desenvolvido para aumentar o engajamento dos leitores da newsle
 
 ### 📊 Painel Administrativo
 
-- Acesso restrito apenas para administradores (atualmente, apenas [**joao@example.com**](mailto\:joao@example.com)).
+- Acesso restrito apenas para administradores (atualmente, apenas [**joao@example.com**](mailto\:joao@example.com)) e  [**mark@example.com**](mailto\:mark@example.com)).
 - Visualização da quantidade total de usuários e posts.
 - Gráficos mostrando padrões de engajamento.
 
@@ -70,7 +70,7 @@ Além das possíveis melhorias estéticas, sugiro implementar as seguintes funci
 
 ## 🎥 Demonstração
 
-Um vídeo demonstrativo mostrando todas as funcionalidades implementadas está disponível.
+Um vídeo demonstrativo mostrando todas as funcionalidades implementadas está disponível aquim https://www.youtube.com/watch?v=xj7E9EHss_M.
 
 ## 📦 Como Rodar o Projeto
 
