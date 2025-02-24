@@ -17,7 +17,7 @@ Este projeto foi desenvolvido para aumentar o engajamento dos leitores da newsle
 
 - Login e registro funcional.
 - Exibição do streak atual (quantos dias seguidos o leitor abriu a newsletter).
-- - Possibilidade de visualizar artigos 
+- Possibilidade de visualizar artigos 
 - Possibilidade de visualizar artigos completos ao clicar em "Ver Mais".
 
 ### 📊 Painel Administrativo
